@@ -71,12 +71,46 @@ public class MainActivity extends AppCompatActivity {
 
     public void newMatch() {  //A game is composed of three matches
 
+        int correctButton = random.nextInt(4);
+        int rannum= random.nextInt(10);
         int operand1 = random.nextInt(10);
-        int operand2=0;
+        int operand2=random.nextInt(10);
+        int ans=0;
         //check is operand2 is not zero; otherwise in case of division-divide by zero error will come
         String operator = operators[random.nextInt(4)];
+        if (operator=="/")
+            operand1=operand2*rannum;
         textView2.setText(operand1 + operator + operand2);
+        switch (operator){
+            case "+": ans=operand1+operand2;
+                break;
+            case "-": ans=operand1-operand2;
+                break;
+            case "*": ans=operand1*operand2;
+                break;
+            case "/": ans=operand1/operand2;
+                break;
+        }
+        String a=String.valueOf(ans-2);
+        String b=String.valueOf(ans+1);
+        String c=String.valueOf(ans-1);
+        String d=String.valueOf(ans+2);
+        String e=String.valueOf(ans);
+        button1.setText(a);
+        button2.setText(b);
+        button3.setText(c);
+        button4.setText(d);
 
+        switch (correctButton){
+            case 0: button1.setText(e);
+                break;
+            case 1:button2.setText(e);
+                break;
+            case 2: button3.setText(e);
+                break;
+            case 3:button4.setText(e);
+                break;
+        }
       // Your code here, to diplay correct and incorrect options on the buttons
 
         if(matchCounter==3){    // if three matches are completed updatee the perfomrance in sharedpreferences
